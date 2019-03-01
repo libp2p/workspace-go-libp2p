@@ -160,9 +160,6 @@
 [submodule "go-libp2p-examples"]
 	path = go-libp2p-examples
 	url = git@github.com:libp2p/go-libp2p-examples.git
-[submodule "go-libp2p-coral-dht"]
-	path = go-libp2p-coral-dht
-	url = git@github.com:libp2p/go-libp2p-coral-dht.git
 [submodule "go-libp2p-daemon"]
 	path = go-libp2p-daemon
 	url = git@github.com:libp2p/go-libp2p-daemon.git
