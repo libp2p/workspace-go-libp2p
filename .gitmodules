@@ -52,9 +52,6 @@
 [submodule "go-libp2p-pubsub"]
 	path = go-libp2p-pubsub
 	url = git@github.com:libp2p/go-libp2p-pubsub.git
-[submodule "go-utp-transport"]
-	path = go-utp-transport
-	url = git@github.com:libp2p/go-utp-transport.git
 [submodule "go-tcp-transport"]
 	path = go-tcp-transport
 	url = git@github.com:libp2p/go-tcp-transport.git
