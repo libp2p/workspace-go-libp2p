@@ -91,9 +91,6 @@
 [submodule "go-libp2p-pnet"]
 	path = go-libp2p-pnet
 	url = git@github.com:libp2p/go-libp2p-pnet.git
-[submodule "go-peerstream"]
-	path = go-peerstream
-	url = git@github.com:libp2p/go-peerstream.git
 [submodule "go-libp2p-consensus"]
 	path = go-libp2p-consensus
 	url = git@github.com:libp2p/go-libp2p-consensus.git
