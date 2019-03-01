@@ -124,9 +124,6 @@
 [submodule "go-libp2p-connmgr"]
 	path = go-libp2p-connmgr
 	url = git@github.com:libp2p/go-libp2p-connmgr.git
-[submodule "go-libp2p-circuit-progs"]
-	path = go-libp2p-circuit-progs
-	url = git@github.com:libp2p/go-libp2p-circuit-progs.git
 [submodule "go-libp2p-interface-connmgr"]
 	path = go-libp2p-interface-connmgr
 	url = git@github.com:libp2p/go-libp2p-interface-connmgr.git
