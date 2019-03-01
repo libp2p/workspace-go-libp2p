@@ -115,9 +115,6 @@
 [submodule "go-libp2p-quic-transport"]
 	path = go-libp2p-quic-transport
 	url = git@github.com:libp2p/go-libp2p-quic-transport.git
-[submodule "go-libp2p-identify"]
-	path = go-libp2p-identify
-	url = git@github.com:libp2p/go-libp2p-identify.git
 [submodule "go-wireguard"]
 	path = go-wireguard
 	url = git@github.com:libp2p/go-wireguard.git
