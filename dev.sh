@@ -1,59 +1,75 @@
 #!/usr/bin/env bash
+# vim: set expandtab sw=4 ts=4:
 
-## This little script accompanies a go mod uber repo, that is, a Git repo that aggregates modules pertaining 
+## This little script accompanies a go mod uber repo, that is, a Git repo that aggregates modules pertaining
 ## to a single project linearly through git submodules.
 
 set -euo pipefail
 IFS=$'\n'
+
 org="libp2p"
 
 ## Load all subdirectories siblings of this script.
-mods=($(ls -d $(dirname ${0})/*/ | xargs -n1 basename))
+mods=()
+while IFS='' read -r line; do mods+=("$line"); done < \
+    <(find "$(dirname "${0}")" -mindepth 1 -maxdepth 1 -type d -not -name '.*' -exec basename {} ';' | sort)
 
 ## Edits a module gomod. Args:
 ##  $1: module to edit
 ##  $2: array of flags to go mod edit
 edit_mod() {
     local mod="${1}"
-    local flags="${2}"
-    echo ${flags[@]} | xargs -n1 -I {}  go mod edit {} $mod/go.mod
+    shift
+    local flags=("$@")
+    go mod edit "${flags[@]}" "$mod/go.mod"
     echo $mod
 }
 
 do_local() {
-    local flags=($(echo ${mods[@]} | xargs -n1 -I {} echo "-replace=github.com/$org/{}=../{}"))
-    for i in ${!mods[@]};
-    do
-        local rep=( ${flags[@]:0:$i} ${flags[@]:$i} )
-        edit_mod "${mods[$i]}" $rep &
+    local flags=()
+    for mod in "${mods[@]}"; do
+        flags+=("-replace=github.com/$org/$mod=../$mod")
     done
-    wait
+    for i in "${!mods[@]}"; do
+        local rep=()
+        for j in "${!flags[@]}"; do
+            if [[ j -ne i ]]; then
+                rep+=("${flags[$j]}")
+            fi
+        done
+
+        edit_mod "${mods[$i]}" "${rep[@]}"
+    done
 }
 
 do_remote() {
-    local flags=($(echo ${mods[@]} | xargs -n1 -I {} echo "-dropreplace=github.com/$org/{}"))
-    for i in ${!mods[@]};
-    do
-        local rep=( ${flags[@]:0:$i} ${flags[@]:$i} )
-        edit_mod "${mods[$i]}" $rep &
+    local flags=()
+    for mod in "${mods[@]}"; do
+        flags+=("-dropreplace=github.com/$org/$mod")
     done
-    wait
+    for i in "${!mods[@]}"; do
+        local rep=()
+        for j in "${!flags[@]}"; do
+            if [[ j -ne i ]]; then
+                rep+=("${flags[$j]}")
+            fi
+        done
+
+        edit_mod "${mods[$i]}" "${rep[@]}"
+    done
 }
 
 do_refresh() {
-    cd `dirname ${0}`
+    cd "$(dirname "${0}")"
     echo "::: Stashing all changes :::"
     git submodule foreach git stash
 
     echo "::: Updating all submodules from origin :::"
     exec 3>&1
-    set +e
-    git submodule update --jobs 10 --remote 1>&3 2>&3
-    if [[ $? > 0 ]]; then
+    if ! git submodule update --jobs 10 --remote 1>&3 2>&3; then
         echo "WARN: upgrade git for faster submodule updates from origin"
         git submodule update --remote
     fi
-    set -e
 
     echo "::: Checking out master on all submodules :::"
     git submodule foreach git checkout master
