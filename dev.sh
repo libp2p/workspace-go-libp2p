@@ -36,6 +36,7 @@ do_local() {
 }
 
 do_remote() {
+	local flags=()
     for mod in "${mods[@]}"; do
         flags+=("-dropreplace=github.com/$org/$mod")
     done
