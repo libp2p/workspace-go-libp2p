@@ -29,8 +29,8 @@ do_local() {
     for mod in "${mods[@]}"; do
         flags+=("-replace=github.com/$org/$mod=../$mod")
     done
-    local rep=()
     for i in "${!mods[@]}"; do
+        local rep=()
         for j in "${!flags[@]}"; do
             if [[ j -ne i ]]; then
                 rep+=("${flags[$j]}")
