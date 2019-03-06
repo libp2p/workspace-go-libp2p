@@ -55,9 +55,6 @@
 [submodule "go-tcp-transport"]
 	path = go-tcp-transport
 	url = git@github.com:libp2p/go-tcp-transport.git
-[submodule "go-xtp"]
-	path = go-xtp
-	url = git@github.com:libp2p/go-xtp.git
 [submodule "go-libp2p-protocol"]
 	path = go-libp2p-protocol
 	url = git@github.com:libp2p/go-libp2p-protocol.git
