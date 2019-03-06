@@ -19,7 +19,8 @@ while IFS='' read -r line; do mods+=("$line"); done < \
 ##  $2: array of flags to go mod edit
 edit_mod() {
     local mod="${1}"
-    local -n flags=$2
+	shift
+	local flags=("$@")
     go mod edit "${flags[@]}" "$mod/go.mod"
 }
 
@@ -30,7 +31,7 @@ do_local() {
     done
     for i in "${!mods[@]}"; do
         local rep=( "${flags[@]:0:$i}" "${flags[@]:$i}" )
-        edit_mod "${mods[$i]}" rep
+        edit_mod "${mods[$i]}" "${rep[@]}"
     done
 }
 
@@ -40,7 +41,7 @@ do_remote() {
     done
     for i in "${!mods[@]}"; do
         local rep=( "${flags[@]:0:$i}" "${flags[@]:$i}" )
-        edit_mod "${mods[$i]}" rep
+        edit_mod "${mods[$i]}" "${rep[@]}"
     done
 }
 
