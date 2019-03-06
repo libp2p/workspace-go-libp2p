@@ -12,7 +12,7 @@ org="libp2p"
 ## Load all subdirectories siblings of this script.
 mods=()
 while IFS='' read -r line; do mods+=("$line"); done < \
-    <(find "$(dirname "${0}")" -mindepth 1 -maxdepth 1 -type d -not -name '.*' -exec basename {} ';')
+    <(find "$(dirname "${0}")" -mindepth 1 -maxdepth 1 -type d -not -name '.*' -exec basename {} ';' | sort)
 
 ## Edits a module gomod. Args:
 ##  $1: module to edit
@@ -22,6 +22,7 @@ edit_mod() {
     shift
     local flags=("$@")
     go mod edit "${flags[@]}" "$mod/go.mod"
+    echo $mod
 }
 
 do_local() {
