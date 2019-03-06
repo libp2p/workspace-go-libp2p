@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# vim: set expandtab sw=4 ts=4
+# vim: set expandtab sw=4 ts=4:
 
 ## This little script accompanies a go mod uber repo, that is, a Git repo that aggregates modules pertaining
 ## to a single project linearly through git submodules.
@@ -19,8 +19,8 @@ while IFS='' read -r line; do mods+=("$line"); done < \
 ##  $2: array of flags to go mod edit
 edit_mod() {
     local mod="${1}"
-	shift
-	local flags=("$@")
+    shift
+    local flags=("$@")
     go mod edit "${flags[@]}" "$mod/go.mod"
 }
 
@@ -29,19 +29,31 @@ do_local() {
     for mod in "${mods[@]}"; do
         flags+=("-replace=github.com/$org/$mod=../$mod")
     done
+    local rep=()
     for i in "${!mods[@]}"; do
-        local rep=( "${flags[@]:0:$i}" "${flags[@]:$i}" )
+        for j in "${!flags[@]}"; do
+            if [[ j -ne i ]]; then
+                rep+=("${flags[$j]}")
+            fi
+        done
+
         edit_mod "${mods[$i]}" "${rep[@]}"
     done
 }
 
 do_remote() {
-	local flags=()
+    local flags=()
     for mod in "${mods[@]}"; do
         flags+=("-dropreplace=github.com/$org/$mod")
     done
     for i in "${!mods[@]}"; do
-        local rep=( "${flags[@]:0:$i}" "${flags[@]:$i}" )
+        local rep=()
+        for j in "${!flags[@]}"; do
+            if [[ j -ne i ]]; then
+                rep+=("${flags[$j]}")
+            fi
+        done
+
         edit_mod "${mods[$i]}" "${rep[@]}"
     done
 }
