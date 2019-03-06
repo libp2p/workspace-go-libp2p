@@ -31,12 +31,9 @@ do_local() {
         flags+=("-replace=github.com/$org/$mod=../$mod")
     done
     for i in "${!mods[@]}"; do
-        local rep=()
-        for j in "${!flags[@]}"; do
-            if [[ j -ne i ]]; then
-                rep+=("${flags[$j]}")
-            fi
-        done
+        local rep=("${flags[@]}")
+        unset 'rep['"$i"']'
+        rep=("${rep[@]}")
 
         edit_mod "${mods[$i]}" "${rep[@]}"
     done
@@ -48,12 +45,9 @@ do_remote() {
         flags+=("-dropreplace=github.com/$org/$mod")
     done
     for i in "${!mods[@]}"; do
-        local rep=()
-        for j in "${!flags[@]}"; do
-            if [[ j -ne i ]]; then
-                rep+=("${flags[$j]}")
-            fi
-        done
+        local rep=("${flags[@]}")
+        unset 'rep['"$i"']'
+        rep=("${rep[@]}")
 
         edit_mod "${mods[$i]}" "${rep[@]}"
     done
