@@ -4,7 +4,7 @@ The go-libp2p project has migrated to [Go
 modules](https://github.com/golang/go/wiki/Modules). As a result, our
 development workflow will need to change a bit.
 
-## `go get` and `GOPATH`
+## `go get` and `GOPATH`
 
 Goodbye monolithic `GOPATH`.
 
@@ -21,7 +21,7 @@ _Fun fact: Go mod makes bold assertions about immutability, and this transpires
 even to file permissions under the module cache. A quick `ls -l` therein shows
 that go devoids downloaded modules of write permissions even for the owner._
 
-## Local development
+## Local development
 
 The go tools resolve module dependencies off from the uptstream repos, based on
 the `require` directives in `go.mod` files.
