@@ -4,9 +4,23 @@ The go-libp2p project has migrated to [Go
 modules](https://github.com/golang/go/wiki/Modules). As a result, our
 development workflow will need to change a bit.
 
+To make the developer's life easier, this is a meta-repository that aggregates
+all go-libp2p repos under a single roof via git submodules, and provides a
+management script (`./workspace.sh`) for automating common workflows.
+
+This is currently at pilot stage and heavily WIP. Feedback and contributions 
+are welcome. Some issues we're still analysing include:
+
+* go mod <> IPFS integration, to consume and publish content-addressed
+  dependencies easily.
+* Automating the "bubbling" and update workflow, via scripts or tooling such
+  as [renovate](https://renovatebot.com).
+* Shared libp2p/IPFS workspace.
+* Nightly master builds.
+
 ## `go get` and `GOPATH`
 
-Goodbye monolithic `GOPATH`.
+Goodbye monolithic `GOPATH`!
 
 Running `go get` from outside a go module (i.e. a Go source file tree that
 doesn't contain a go.mod) will still act under your `GOPATH`.
@@ -19,7 +33,8 @@ are all now module-aware.
 
 _Fun fact: Go mod makes bold assertions about immutability, and this transpires
 even to file permissions under the module cache. A quick `ls -l` therein shows
-that go devoids downloaded modules of write permissions even for the owner._
+that go strips away write permissions from downloaded modules, even for the
+owner._
 
 ## Local development
 
