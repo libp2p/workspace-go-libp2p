@@ -61,8 +61,8 @@ $ ./workspace.sh remote
 **Stash local changes and update all repos from origin/master**
 
 ```
-$ ./workspace.sh remote    # to reset go.mod files to original $ ./workspace.sh
-refresh
+$ ./workspace.sh remote    # to reset go.mod files to original
+$ ./workspace.sh refresh
 ```
 
 ## Background: Why is this necessary?
