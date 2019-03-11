@@ -39,7 +39,7 @@ This will initialise the submodules by cloning repos into their relevant
 subdirectories.
 
 ```
-$ git clone <this repo> $ git submodule init $ git submodule update
+$ git clone --recursive <this repo>
 ```
 
 **Switch to local module resolution**
