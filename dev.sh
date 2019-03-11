@@ -58,15 +58,16 @@ do_refresh() {
     echo "::: Stashing all changes :::"
     git submodule foreach git stash
 
-    echo "::: Updating all submodules from origin :::"
-    exec 3>&1
-    if ! git submodule update --jobs 10 --remote 1>&3 2>&3; then
-        echo "WARN: upgrade git for faster submodule updates from origin"
-        git submodule update --remote
-    fi
-
     echo "::: Checking out master on all submodules :::"
     git submodule foreach git checkout master
+
+    echo "::: Rebasing all submodules origin/master :::"
+    exec 3>&1
+    if ! git submodule update --jobs 10 --remote --rebase 1>&3 2>&3; then
+        echo "WARN: upgrade git for faster submodule updates from origin"
+        git submodule update --remote --rebase
+    fi
+
     echo "Done"
 }
 
