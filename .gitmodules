@@ -160,3 +160,6 @@
 [submodule "go-libp2p-tls"]
 	path = go-libp2p-tls
 	url = git@github.com:libp2p/go-libp2p-tls.git
+[submodule "go-libp2p-core"]
+	path = go-libp2p-core
+	url = git@github.com:libp2p/go-libp2p-core.git
