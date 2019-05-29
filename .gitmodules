@@ -163,3 +163,21 @@
 [submodule "go-libp2p-core"]
 	path = go-libp2p-core
 	url = git@github.com:libp2p/go-libp2p-core.git
+[submodule "go-multistream"]
+	path = go-multistream
+	url = git@github.com:multiformats/go-multistream
+[submodule "go-libp2p-testing"]
+	path = go-libp2p-testing
+	url = git@github.com:libp2p/go-libp2p-testing.git
+[submodule "go-libp2p-mplex"]
+	path = go-libp2p-mplex
+	url = git@github.com:libp2p/go-libp2p-mplex.git
+[submodule "go-stream-muxer-multistream"]
+	path = go-stream-muxer-multistream
+	url = git@github.com:libp2p/go-stream-muxer-multistream.git
+[submodule "go-yamux"]
+	path = go-yamux
+	url = git@github.com:libp2p/go-yamux.git
+[submodule "go-libp2p-yamux"]
+	path = go-libp2p-yamux
+	url = git@github.com:libp2p/go-libp2p-yamux.git
