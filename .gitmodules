@@ -181,3 +181,15 @@
 [submodule "go-libp2p-yamux"]
 	path = go-libp2p-yamux
 	url = git@github.com:libp2p/go-libp2p-yamux.git
+[submodule "go-multiaddr"]
+	path = go-multiaddr
+	url = git@github.com:multiformats/go-multiaddr.git
+[submodule "go-multiaddr-net"]
+	path = go-multiaddr-net
+	url = git@github.com:multiformats/go-multiaddr-net.git
+[submodule "go-multiaddr-dns"]
+	path = go-multiaddr-dns
+	url = git@github.com:multiformats/go-multiaddr-dns.git
+[submodule "go-multiaddr-fmt"]
+	path = go-multiaddr-fmt
+	url = git@github.com:multiformats/go-multiaddr-fmt.git
