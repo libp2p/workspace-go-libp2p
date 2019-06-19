@@ -154,3 +154,6 @@
 [submodule "go-multiaddr-fmt"]
 	path = go-multiaddr-fmt
 	url = git@github.com:multiformats/go-multiaddr-fmt.git
+[submodule "go-eventbus"]
+	path = go-eventbus
+	url = git@github.com:libp2p/go-eventbus.git
