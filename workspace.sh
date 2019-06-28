@@ -91,6 +91,14 @@ do_branches() {
     done
 }
 
+do_branches_col() {
+    if which column &>/dev/null; then
+        do_branches | column -t
+    else
+        do_branches
+    fi
+}
+
 print_usage() {
     echo "Usage: $0 {local|remote|master}" >&2
     echo
@@ -110,6 +118,6 @@ case "$1" in
     local) do_local ;;
     remote) do_remote ;;
     refresh) do_refresh ;;
-    branches) do_branches ;;
+    branches) do_branches_col ;;
     *) print_usage; exit 1; ;;
 esac
