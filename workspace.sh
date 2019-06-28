@@ -71,12 +71,33 @@ do_refresh() {
     echo "Done"
 }
 
+git-branch-name () {
+    git status 2> /dev/null | \
+        head -1 | \
+        sed 's/^# //' | \
+        sed 's/^On branch //' |\
+        sed 's/HEAD detached at //'
+}
+
+do_branches() {
+    for D in *;
+    do
+        if [ -d "${D}" ]; then
+            cd "${D}"
+            printf "${D}\t"
+            git-branch-name
+            cd ..
+        fi
+    done
+}
+
 print_usage() {
     echo "Usage: $0 {local|remote|master}" >&2
     echo
     echo "  local       adds \`replace\` directives to all go.mod files to make $org dependencies point to the local workspace"
     echo "  remote      removes the \`replace\` directives introduced by \`local\`"
     echo "  refresh     refreshes all submodules from origin/master, stashing all local changes first, then checking out master"
+    echo "  branches    lists all the repos and the branch checked out"
     echo ""
 }
 
@@ -89,5 +110,6 @@ case "$1" in
     local) do_local ;;
     remote) do_remote ;;
     refresh) do_refresh ;;
+    branches) do_branches ;;
     *) print_usage; exit 1; ;;
 esac
