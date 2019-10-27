@@ -157,3 +157,6 @@
 [submodule "go-eventbus"]
 	path = go-eventbus
 	url = git@github.com:libp2p/go-eventbus.git
+[submodule "go-utp-transport"]
+	path = go-utp-transport
+	url = git@github.com:libp2p/go-utp-transport.git
