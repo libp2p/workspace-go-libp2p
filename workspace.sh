@@ -9,6 +9,11 @@ IFS=$'\n'
 
 org="libp2p"
 
+
+## Playground is a library where go.mod is modified but not appears in other go.mod,
+## this create a place where you can playwith your modification without changing something elsewhere.
+playground="playground"
+
 ## Load all subdirectories siblings of this script.
 mods=()
 while IFS='' read -r line; do mods+=("$line"); done < \
@@ -28,6 +33,7 @@ edit_mod() {
 do_local() {
     local flags=()
     for mod in "${mods[@]}"; do
+        if [ $mod == $playground ]; then continue; fi
         flags+=("-replace=github.com/$org/$mod=../$mod")
     done
     for i in "${!mods[@]}"; do
@@ -42,6 +48,7 @@ do_local() {
 do_remote() {
     local flags=()
     for mod in "${mods[@]}"; do
+        if [ $mod == $playground ]; then continue; fi
         flags+=("-dropreplace=github.com/$org/$mod")
     done
     for i in "${!mods[@]}"; do
@@ -82,6 +89,7 @@ git-branch-name () {
 do_branches() {
     for D in *;
     do
+        if [ $D == $playground ]; then continue; fi
         if [ -d "${D}" ]; then
             cd "${D}"
             printf "${D}\t"

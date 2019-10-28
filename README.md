@@ -65,6 +65,13 @@ $ ./workspace.sh remote    # to reset go.mod files to original
 $ ./workspace.sh refresh
 ```
 
+### The Playground
+
+A playground is avaible in [playground](playground/) for you to play with
+latest branches (like the whole workspace) without affecting somethings else.
+
+See the [playground readme](playground/README.md).
+
 ## Background: Why is this necessary?
 
 Gomod is great for mono-repo projects that depend on 3rd party dependencies,
