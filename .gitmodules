@@ -157,3 +157,6 @@
 [submodule "go-libp2p-webrtc-direct"]
 	path = go-libp2p-webrtc-direct
 	url = git@github.com:libp2p/go-libp2p-webrtc-direct.git
+[submodule "go-eventbus"]
+	path = go-eventbus
+	url = git@github.com:libp2p/go-eventbus.git
