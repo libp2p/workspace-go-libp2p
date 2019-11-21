@@ -7,12 +7,19 @@
 set -euo pipefail
 IFS=$'\n'
 
-org="libp2p"
-
 ## Load all subdirectories siblings of this script.
 mods=()
 while IFS='' read -r line; do mods+=("$line"); done < \
     <(find "$(dirname "${0}")" -mindepth 1 -maxdepth 1 -type d -not -name '.*' -exec basename {} ';' | sort)
+
+## Return the repo name of origin remote
+##   It expect the origin to be `git@github.com:<orgname>/<repo-name>.git` (ssh format).
+get_repo() {
+	local mod="${1}"
+	cd "$mod"
+	git remote get-url origin | cut -d':' -f2 | cut -d'.' -f1
+	cd ..
+}
 
 ## Edits a module gomod. Args:
 ##  $1: module to edit
@@ -28,7 +35,7 @@ edit_mod() {
 do_local() {
     local flags=()
     for mod in "${mods[@]}"; do
-        flags+=("-replace=github.com/$org/$mod=../$mod")
+        flags+=("-replace=github.com/$(get_repo $mod)=../$mod")
     done
     for i in "${!mods[@]}"; do
         local rep=("${flags[@]}")
@@ -42,7 +49,7 @@ do_local() {
 do_remote() {
     local flags=()
     for mod in "${mods[@]}"; do
-        flags+=("-dropreplace=github.com/$org/$mod")
+        flags+=("-dropreplace=github.com/$(get_repo $mod)")
     done
     for i in "${!mods[@]}"; do
         local rep=("${flags[@]}")
@@ -102,7 +109,7 @@ do_branches_col() {
 print_usage() {
     echo "Usage: $0 {local|remote|master}" >&2
     echo
-    echo "  local       adds \`replace\` directives to all go.mod files to make $org dependencies point to the local workspace"
+    echo "  local       adds \`replace\` directives to all go.mod files to make dependencies point to the local workspace"
     echo "  remote      removes the \`replace\` directives introduced by \`local\`"
     echo "  refresh     refreshes all submodules from origin/master, stashing all local changes first, then checking out master"
     echo "  branches    lists all the repos and the branch checked out"
