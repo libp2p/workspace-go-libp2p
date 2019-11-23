@@ -16,9 +16,7 @@ while IFS='' read -r line; do mods+=("$line"); done < \
 ##   It expect the origin to be `git@github.com:<orgname>/<repo-name>.git` (ssh format).
 get_repo() {
 	local mod="${1}"
-	cd "$mod"
-	git remote get-url origin | cut -d':' -f2 | cut -d'.' -f1
-	cd ..
+	git -C "$mod" remote get-url origin | cut -d':' -f2 | cut -d'.' -f1
 }
 
 ## Edits a module gomod. Args:
