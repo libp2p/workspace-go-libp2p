@@ -160,3 +160,12 @@
 [submodule "go-eventbus"]
 	path = go-eventbus
 	url = git@github.com:libp2p/go-eventbus.git
+[submodule "go-libp2p-noise"]
+	path = go-libp2p-noise
+	url = git@github.com:libp2p/go-libp2p-noise.git
+[submodule "go-libp2p-introspection"]
+	path = go-libp2p-introspection
+	url = git@github.com:libp2p/go-libp2p-introspection.git
+[submodule "go-libp2p-pubsub-tracer"]
+	path = go-libp2p-pubsub-tracer
+	url = git@github.com:libp2p/go-libp2p-pubsub-tracer.git
