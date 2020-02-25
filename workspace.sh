@@ -15,8 +15,7 @@ while IFS='' read -r line; do mods+=("$line"); done < \
 ## Return the repo name of origin remote
 ##   It expect the origin to be `git@github.com:<orgname>/<repo-name>.git` (ssh format).
 get_repo() {
-	local mod="${1}"
-	git -C "$mod" remote get-url origin | cut -d':' -f2 | cut -d'.' -f1
+	git -C "${1}" remote get-url origin | cut -d':' -f2 | cut -d'.' -f1
 }
 
 ## Edits a module gomod. Args:
@@ -107,10 +106,10 @@ do_branches_col() {
 print_usage() {
     echo "Usage: $0 {local|remote|master}" >&2
     echo
-    echo "  local       adds \`replace\` directives to all go.mod files to make dependencies point to the local workspace"
-    echo "  remote      removes the \`replace\` directives introduced by \`local\`"
-    echo "  refresh     refreshes all submodules from origin/master, stashing all local changes first, then checking out master"
-    echo "  branches    lists all the repos and the branch checked out"
+    echo "  [l]ocal       adds \`replace\` directives to all go.mod files to make dependencies point to the local workspace"
+    echo "  [r]emote      removes the \`replace\` directives introduced by \`local\`"
+    echo "  [re]fresh     refreshes all submodules from origin/master, stashing all local changes first, then checking out master"
+    echo "  [b]ranches    lists all the repos and the branch checked out"
     echo ""
 }
 
@@ -120,9 +119,9 @@ if [[ -z ${1:-} ]]; then
 fi
 
 case "$1" in
-    local) do_local ;;
-    remote) do_remote ;;
-    refresh) do_refresh ;;
-    branches) do_branches_col ;;
+    local | l) do_local ;;
+    remote | r) do_remote ;;
+    refresh | re) do_refresh ;;
+    branches | b) do_branches_col ;;
     *) print_usage; exit 1; ;;
 esac
