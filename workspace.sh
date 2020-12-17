@@ -104,7 +104,7 @@ do_branches_col() {
 }
 
 print_usage() {
-    echo "Usage: $0 {local|remote|master}" >&2
+    echo "Usage: $0 {local|remote|refresh|branches}" >&2
     echo
     echo "  [l]ocal       adds \`replace\` directives to all go.mod files to make dependencies point to the local workspace"
     echo "  [r]emote      removes the \`replace\` directives introduced by \`local\`"
