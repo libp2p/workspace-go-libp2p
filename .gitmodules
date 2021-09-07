@@ -13,9 +13,6 @@
 [submodule "go-libp2p-loggables"]
 	path = go-libp2p-loggables
 	url = git@github.com:libp2p/go-libp2p-loggables.git
-[submodule "go-libp2p-secio"]
-	path = go-libp2p-secio
-	url = git@github.com:libp2p/go-libp2p-secio.git
 [submodule "go-ws-transport"]
 	path = go-ws-transport
 	url = git@github.com:libp2p/go-ws-transport.git
