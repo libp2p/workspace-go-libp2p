@@ -34,9 +34,6 @@
 [submodule "go-tcp-transport"]
 	path = go-tcp-transport
 	url = git@github.com:libp2p/go-tcp-transport.git
-[submodule "go-maddr-filter"]
-	path = go-maddr-filter
-	url = git@github.com:libp2p/go-maddr-filter.git
 [submodule "go-addr-util"]
 	path = go-addr-util
 	url = git@github.com:libp2p/go-addr-util.git
