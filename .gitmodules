@@ -160,3 +160,45 @@
 [submodule "go-libp2p-pubsub-tracer"]
 	path = go-libp2p-pubsub-tracer
 	url = git@github.com:libp2p/go-libp2p-pubsub-tracer.git
+[submodule "go-cidranger"]
+	path = go-cidranger
+	url = git@github.com:libp2p/go-cidranger.git
+[submodule "go-libp2p-asn-util"]
+	path = go-libp2p-asn-util
+	url = git@github.com:libp2p/go-libp2p-asn-util.git
+[submodule "go-libp2p-gostream"]
+	path = go-libp2p-gostream
+	url = git@github.com:libp2p/go-libp2p-gostream.git
+[submodule "go-libp2p-resource-manager"]
+	path = go-libp2p-resource-manager
+	url = git@github.com:libp2p/go-libp2p-resource-manager.git
+[submodule "go-libp2p-xor"]
+	path = go-libp2p-xor
+	url = git@github.com:libp2p/go-libp2p-xor.git
+[submodule "go-netroute"]
+	path = go-netroute
+	url = git@github.com:libp2p/go-netroute.git
+[submodule "go-openssl"]
+	path = go-openssl
+	url = git@github.com:libp2p/go-openssl.git
+[submodule "zeroconf"]
+	path = zeroconf
+	url = git@github.com:libp2p/zeroconf.git
+[submodule "go-base32"]
+	path = go-base32
+	url = git@github.com:multiformats/go-base32.git
+[submodule "go-multiaddr-net"]
+	path = go-multiaddr-net
+	url = git@github.com:multiformats/go-multiaddr-net.git
+[submodule "go-multibase"]
+	path = go-multibase
+	url = git@github.com:multiformats/go-multibase.git
+[submodule "go-multihash"]
+	path = go-multihash
+	url = git@github.com:multiformats/go-multihash.git
+[submodule "go-varint"]
+	path = go-varint
+	url = git@github.com:multiformats/go-varint.git
+[submodule "go-base36"]
+	path = go-base36
+	url = git@github.com:multiformats/go-base36.git

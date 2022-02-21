@@ -72,6 +72,21 @@ do_refresh() {
         git submodule update --remote --rebase
     fi
 
+    echo "::: Pulling all modules in case new dependencies have been added :::"
+    # We might have to do multiple passes in case a new dependency adds another new dependency
+    added=1
+    while [ ${added} -eq 1 ]; do
+        added=0
+        for repo in $(
+            awk '/^\s\s*github.com\/(libp2p|ipld|multiformats)/ { print gensub(/^github.com\/([^/]*\/[^/]*).*/, "\\1", "g", $1) }' ./*/go.mod \
+            | sort -u
+        ); do
+            if git submodule add "git@github.com:${repo}.git"; then
+                added=1
+            fi
+        done
+    done
+
     echo "Done"
 }
 
