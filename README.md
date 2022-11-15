@@ -1,3 +1,5 @@
+> This repository is deprecated following the repository consolidation work that happened in [go-libp2p](https://github.com/libp2p/go-libp2p).
+
 # go-libp2p workspace
 
 go-libp2p is a p2p networking stack based on the principle of modularity. Its
